@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml">
+
+    <ui:define name="corpo">
+        <h:form>
+            <p:toolbar>
+                <p:toolbarGroup>
+                    <p:commandButton value="Adicionar" action="#{clienteBean.addCliente()}" update="@form"/>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <p:fieldset legend="Dados para Cadastro">
+                <p:panelGrid columns="2">
+
+                    <h:outputLabel value="Nome"></h:outputLabel>
+                    <p:inputText value="#{clienteBean.cliente.nome}"/>
+
+                    <h:outputLabel value="Telefone"></h:outputLabel>
+                    <p:inputMask mask="(99)9999-9999" value="#{clienteBean.cliente.dataNascimento}"/>
+
+                    <h:outputLabel value="CPF"></h:outputLabel>
+                    <p:inputMask mask="999.999.999.99" value="#{clienteBean.cliente.cpf}"/>
+
+                    <h:outputLabel value="RG"></h:outputLabel>
+                    <p:inputMask mask="9999.999-9" value="#{clienteBean.cliente.rg}"/>
+
+                    <h:outputLabel value="Endereco"></h:outputLabel>
+                    <p:inputText value="#{clienteBean.cliente.endereco}"/>
+
+                    <h:outputLabel value="Data de Nascimento"></h:outputLabel>
+                    <p:calendar value="#{clienteBean.cliente.dataNascimento}"/>
+                </p:panelGrid>
+
+                <p:dataTable var="cliente" value="#{clienteBean.clientes}">
+                    <p:column headerText="Nome" sortBy="#{cliente.nome}">
+                        <h:outputText value="#{cliente.nome}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Telefone" sortBy="#{cliente.telefone}">
+                        <h:outputText value="#{cliente.telefone}"/>
+                    </p:column>
+                    
+                    <p:column headerText="CPF" sortBy="#{cliente.cpf}">
+                        <h:outputText value="#{cliente.cpf}"/>
+                    </p:column>
+                    
+                    <p:column headerText="RG" sortBy="#{cliente.rg}">
+                        <h:outputText value="#{cliente.rg}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Endereco" sortBy="#{cliente.endereco}">
+                        <h:outputText value="#{cliente.endereco}"/>
+                    </p:column>
+                    
+                    <p:column headerText="Data Nascimento" sortBy="#{cliente.dataNascimento}">
+                        <h:outputText value="#{cliente.dataNascimento}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                        </h:outputText>
+                    </p:column>
+                    
+                </p:dataTable>
+            </p:fieldset>
+        </h:form>
+    </ui:define>
+</ui:decorate>
+
